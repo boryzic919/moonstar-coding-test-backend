@@ -31,17 +31,6 @@ We need to follow all rest api guidelines as best as we can. The only expection 
 - Add OpenApi and/ or Swagger
 - Wrtie a nice Readme file
 
-### Frontend
-
-- Write tests
-- Implement modern pagination, that would be good for newsfeed
-- Implement second layout for desktop
-- Use scss to describe classes
-- Use Typescript
-- Use pure Javascript/ Typescript with no runtime dependencies
-- If you are using any framework minize dependencies
-- Write a nice Readme file
-
 Any other ideas of your choice.
 
 ## How to start
