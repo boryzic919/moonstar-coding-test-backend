@@ -1,4 +1,5 @@
 using BackEnd.Api.Data;
+using BackEnd.Api.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,9 +20,17 @@ namespace BackEnd.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             services.AddDbContext<PostDbContext>();
+            //Added post repository
+            services.AddScoped<IPostRepository, PostRepository>();
+            //for patch
+            services.AddControllers().AddNewtonsoftJson();
+
+            //swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Post", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +39,8 @@ namespace BackEnd.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Post v1"));
             }
 
             app.UseHttpsRedirection();

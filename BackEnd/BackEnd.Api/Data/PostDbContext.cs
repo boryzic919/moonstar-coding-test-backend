@@ -9,8 +9,8 @@ namespace BackEnd.Api.Data
     {
         public DbSet<Post> Posts { get; set; }
 
-        private readonly string _dbPath; 
-        
+        private readonly string _dbPath;
+
         public PostDbContext()
         {
             _dbPath = Path.Combine(Environment.CurrentDirectory + "/posts.db");
